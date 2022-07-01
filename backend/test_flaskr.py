@@ -133,26 +133,27 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_questions'])
         self.assertEqual(data['current_category'],'Science')
     
-    def test_404_category_questions_not_found_error(self):
+    def test_400_category_questions_not_found_error(self):
         res = self.client().get('/categories/something/questions')
         data = json.loads(res.data)
         
-        self.assertEqual(res.status_code,404)
+        self.assertEqual(res.status_code,400)
         self.assertEqual(data['success'],False)
-        self.assertEqual(data['message'],'resource not found')
+        self.assertEqual(data['message'],'bad request')
         
     def test_quizz_questions_success(self):
         res = self.client().post('/quizzes', json=
                                 {
                                     'previous_questions':[],
-                                    'quiz_category':{'type':'science','id':'2'}
+                                    'quiz_category':{'type':'science','id':'1'}
                                 })
         data = json.loads(res.data)
         
         self.assertEqual(res.status_code,200)
         self.assertEqual(data['success'],True)
+        self.assertEqual(data['question'],True)
         
-    def test_404_quiz_method_not_found_error(self):
+    def test_404_quiz_resource_not_found_error(self):
         res = self.client().post('/quizzes/something')
         data = json.loads(res.data)
         
