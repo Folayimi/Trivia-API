@@ -30,8 +30,7 @@ class TriviaTestCase(unittest.TestCase):
         pass
 
     """
-    TODO
-    Write at least one test for each test for successful operation and for expected errors.
+    creates at least a test for each successful operation and for expected errors.
     """
     
     def test_categories_request(self):
@@ -68,12 +67,12 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'],False)
         self.assertEqual(data['message'], 'resource not found')
         
-    # def test_delete_question(self):
-    #     res = self.client().delete('/questions/2')
-    #     data = json.loads(res.data)
+    def test_delete_question(self):
+        res = self.client().delete('/questions/2')
+        data = json.loads(res.data)
         
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
     
     def test_404_book_not_found(self):
         res = self.client().delete('/questions/100')
@@ -151,7 +150,7 @@ class TriviaTestCase(unittest.TestCase):
         
         self.assertEqual(res.status_code,200)
         self.assertEqual(data['success'],True)
-        self.assertEqual(data['question'],True)
+        self.assertEqual(data['question']['category'],1)
         
     def test_404_quiz_resource_not_found_error(self):
         res = self.client().post('/quizzes/something')
