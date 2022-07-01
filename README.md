@@ -239,5 +239,26 @@ The API returns three error types when requests fail:
   "total_questions": 4
 }
 ```
+### POST /quizzes
+- General:
+    - Gets questions to play the quiz. It takes the category and previous question parameters and returns a random question within the given category, if provided, and that is not one of the previous questions.  
+    - Returns success and a random question within the given category, if provided, and that is not one of the previous questions.
+    
+- Sample: `curl http://127.0.0.1:5000/quizzes -X POST -H "Content-Type: application/json" -d '{'previous_questions':[],'quiz_category':{'type':'science','id':'1'}}'`
+
+```
+{
+  "questions": [
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }
+  ],
+  'successs': 'true'
+}
+```
 
 
