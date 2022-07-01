@@ -141,7 +141,7 @@ The API returns three error types when requests fail:
 }
 ```
 
-### DELETE /questions/<int:question_id>
+### DELETE /questions/{question_id}
 - General:
     - Returns success and the URL takes in a parameteter of the question id     
 - Sample: `curl -X DELETE http://127.0.0.1:5000/questions/3?page=1`
@@ -196,7 +196,7 @@ The API returns three error types when requests fail:
 }
 ```
 
-### GET /categories/science/questions
+### GET /categories/{category}/questions
 - General:
     - Gets questions based on category.  
     - Returns a list of questions, success, total_questions and current_category
