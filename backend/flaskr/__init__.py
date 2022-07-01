@@ -86,7 +86,7 @@ def create_app(test_config=None):
     if len(selected_questions) == 0:
       abort(404)
     else:        
-      categories = {category.format()['type']:category.format()['type'] for category in categories}
+      categories = {category.format()['id']:category.format()['type'] for category in categories}
       current_category = Category.query.filter(Category.id == selected_questions[0]['category']).one_or_none()
       return jsonify({
         'success':True,
