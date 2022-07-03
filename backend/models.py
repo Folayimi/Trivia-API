@@ -44,6 +44,9 @@ class Question(db.Model):
   
   def update(self):
     db.session.commit()
+  
+  def finalize(self):
+    db.session.close()
 
   def delete(self):
     db.session.delete(self)
